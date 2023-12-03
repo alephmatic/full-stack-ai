@@ -1,19 +1,29 @@
 {
   "name": "@alephmatic/full-stack-ai",
-  "version": "0.0.2",
-  "description": "",
-  "main": "dist/index.js",
+  "version": "0.0.3",
+  "description": "Build a full stack Next.js app with an AI prompt.",
+  "homepage": "https://github.com/alephmatic/full-stack-ai#readme",
+  "license": "MIT",
+  "author": {
+    "name": "Eliezer Steinbock",
+    "url": "https://x.com/elie2222"
+  },
   "type": "module",
+  "main": "dist/index.js",
   "bin": {
     "fsai": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "watch": "tsup --watch",
     "start": "node dist/index.js",
     "build": "tsup"
   },
-  "author": "Eliezer Steinbock",
-  "license": "MIT",
   "dependencies": {
     "commander": "^11.1.0",
     "consola": "^3.2.3",
@@ -27,14 +37,15 @@
     "tsup": "^8.0.1",
     "typescript": "^5.3.2"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alephmatic/full-stack-ai.git"
+  },
   "keywords": [
     "cli",
     "aleph",
     "nextjs",
     "ai",
     "kirimase"
-  ],
-  "publishConfig": {
-    "access": "public"
-  }
+  ]
 }
