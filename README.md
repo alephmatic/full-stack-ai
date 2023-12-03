@@ -5,8 +5,10 @@ Build a full stack Next.js app with a prompt.
 Example:
 
 ```bash
+pnpm i -g @alephmatic/kirimase
+pnpm i -g @alephmatic/full-stack-ai
 export OPENAI_API_KEY=...
-fasi gen "Build a clone of Twitter called Warpcast where people cast instead of tweet. Use GitHub for log in."
+fsai gen "Build a clone of Twitter called Warpcast where people cast instead of tweet. Use GitHub for log in."
 ```
 
 Under the hood this project uses [Kirimase](https://github.com/nicoalbanese/kirimase).
@@ -14,7 +16,8 @@ Under the hood this project uses [Kirimase](https://github.com/nicoalbanese/kiri
 ## Run locally
 
 ```bash
+pnpm i -g @alephmatic/kirimase
 pnpm i
-# set OPENAI_API_KEY in .env
+export OPENAI_API_KEY=...
 npx tsx src/index.ts gen "Build a clone of Twitter called Warpcast where people cast instead of tweet. Use GitHub for log in."
 ```
