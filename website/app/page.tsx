@@ -51,14 +51,14 @@ export default function Home() {
               <div className="mt-16 flex items-center justify-center gap-x-10">
                 <a
                   href="https://www.npmjs.com/package/fsai"
-                  className="rounded-md bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-6 py-4 text-lg font-semibold text-white shadow-sm  hover:from-indigo-600 hover:via-purple-600 hover:to-pink-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-400 flex items-center"
+                  className="rounded-md bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-6 py-4 text-lg font-semibold text-white shadow-sm  hover:from-indigo-600 hover:via-purple-600 hover:to-pink-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-400 flex items-center hover:scale-105 duration-300"
                 >
                   Launch your app
                   <RocketIcon className="ml-2 h-5 w-5" />
                 </a>
                 <a
                   href="https://github.com/alephmatic/full-stack-ai"
-                  className="text-lg font-semibold leading-6 text-white hover:opacity-90 flex items-center"
+                  className="text-lg font-semibold leading-6 text-white hover:opacity-90 flex items-center hover:scale-105 duration-300"
                 >
                   <StarIcon className="mr-2 h-5 w-5" />
                   Star on GitHub
@@ -67,6 +67,13 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        <div className="text-white text-center text-lg hover:scale-105 duration-300">
+          <a href='https://x.com/elie2222'>
+            Built by Elie
+          </a>
+        </div>
+
         <div
           className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
           aria-hidden="true"
