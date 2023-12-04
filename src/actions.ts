@@ -7,7 +7,7 @@ import { AuthProvider, MiscPackage, ResourceType, DBField } from "./types";
 let appName: string;
 
 async function createNextApp(appName_: string) {
-  appName = appName_;
+  appName = appName_.toLowerCase().replace(" ", "-");
   consola.log("Creating Next.js app in", process.cwd());
 
   try {
@@ -50,10 +50,10 @@ async function kirimaseInit({
   consola.log("Running Kirimase init");
 
   try {
-    // need to run "pnpm i -g @alephmatic/kirimase" first for this to work
     const { stdout, stderr } = await execa(
-      "aleph-kirimase",
+      "npx",
       [
+        "@alephmatic/kirimase@latest",
         "init",
         "--has-src-folder",
         "false",
@@ -91,26 +91,22 @@ async function kirimaseInit({
   }
 }
 
-async function kirimaseGenerate({
-  resourceTypes,
-  table,
-  belongsToUser,
-  index,
-  fields,
-}: {
+async function kirimaseGenerate(options: {
   resourceTypes: ResourceType[];
   table: string;
   belongsToUser: boolean;
   index?: string;
   fields: DBField[];
 }) {
-  consola.log("Running Kirimase generate");
+  const { resourceTypes, table, belongsToUser, index, fields } = options;
+
+  consola.log("Running Kirimase generate", JSON.stringify(options, null, 2));
 
   try {
-    // need to run "pnpm i -g @alephmatic/kirimase" first for this to work
     const { stdout, stderr } = await execa(
-      "aleph-kirimase",
+      "npx",
       [
+        "@alephmatic/kirimase@latest",
         "generate",
         "--resourceTypes",
         resourceTypes.join(","),
@@ -235,6 +231,8 @@ export function getActions(): Record<string, RunnableFunctionWithParse<any>> {
       name: "kirimaseGenerate",
       description: "Generate models, api routes, and views with Kirimase.",
       parse: (args: string) => {
+        consola.log("args", JSON.stringify(args, null, 2));
+
         return z
           .object({
             // resourceTypes: z.array(
@@ -245,48 +243,56 @@ export function getActions(): Record<string, RunnableFunctionWithParse<any>> {
             index: z.string().optional(),
             fields: z
               .array(
-                z.object({
-                  name: z.string(),
-                  type: z.enum([
-                    "String",
-                    "Boolean",
-                    "Int",
-                    "BigInt",
-                    "Float",
-                    "Decimal",
-                    "Boolean",
-                    "DateTime",
-                    "References",
-                  ]),
-                  references: z.string().optional(),
-                  notNull: z.boolean().optional(),
-                  cascade: z.boolean().optional(),
-                })
+                z
+                  .object({
+                    name: z.string(),
+                    type: z.enum([
+                      "String",
+                      "Boolean",
+                      "Int",
+                      "BigInt",
+                      "Float",
+                      "Decimal",
+                      "Boolean",
+                      "DateTime",
+                      "References",
+                    ]),
+                    references: z.string().default(""),
+                    notNull: z.boolean(),
+                    cascade: z.boolean(),
+                  })
+                  .transform((field) => {
+                    // `belongsToUser` handles this already
+                    const references =
+                      field.references === "user" ||
+                      field.references === "users" ||
+                      field.references === "userId"
+                        ? undefined
+                        : field.references;
+
+                    // If type is References and references is empty, set type to String.
+                    // In all other cases, use the type provided.
+                    const type =
+                      field.type === "References" && !references
+                        ? "String"
+                        : field.type;
+
+                    return {
+                      ...field,
+                      type,
+                      references,
+                    };
+                  })
               )
               .transform((v) => {
-                const withoutUserFields = v.filter((field) => {
-                  // belongsToUser handles this already
+                return v.filter((field) => {
+                  // `belongsToUser` handles this already
                   return (
                     field.name !== "user" &&
                     field.name !== "users" &&
                     field.name !== "userId"
                   );
                 });
-
-                const withoutUserReferences = withoutUserFields.map((field) => {
-                  return {
-                    ...field,
-                    // belongsToUser handles this already
-                    references:
-                      field.references === "user" ||
-                      field.references === "users" ||
-                      field.references === "userId"
-                        ? undefined
-                        : field.references,
-                  };
-                });
-
-                return withoutUserReferences;
               }),
           })
           .transform((v) => {
@@ -328,46 +334,49 @@ export function getActions(): Record<string, RunnableFunctionWithParse<any>> {
               "The name of an index to add to the database table. Should be in snake_case. Must be a field in the table.",
           },
           fields: {
-            type: "object",
+            type: "array",
             description:
               "The fields of the database table. Do not include user. `belongsToUser` handles this.",
-            properties: {
-              name: {
-                type: "string",
-                description: "The name of the field.",
+            items: {
+              type: "object",
+              properties: {
+                name: {
+                  type: "string",
+                  description: "The name of the field.",
+                },
+                type: {
+                  type: "string",
+                  description: "The type of the field.",
+                  enum: [
+                    "String",
+                    "Boolean",
+                    "Int",
+                    "BigInt",
+                    "Float",
+                    "Decimal",
+                    "Boolean",
+                    "DateTime",
+                    "References",
+                  ],
+                },
+                references: {
+                  type: "string",
+                  description:
+                    "The name of the table that the field references. Do not set a reference for `userId`. Use `belongsToUser` instead. If type of the field is not `Reference` this field is empty.",
+                },
+                notNull: {
+                  type: "boolean",
+                  description:
+                    "Whether the field is not null. If true, the field will be required.",
+                },
+                cascade: {
+                  type: "boolean",
+                  description:
+                    "Whether the field cascades. If true, the field will cascade.",
+                },
               },
-              type: {
-                type: "string",
-                description: "The type of the field.",
-                enum: [
-                  "String",
-                  "Boolean",
-                  "Int",
-                  "BigInt",
-                  "Float",
-                  "Decimal",
-                  "Boolean",
-                  "DateTime",
-                  "References",
-                ],
-              },
-              references: {
-                type: "string",
-                description:
-                  "The name of the table that the field references. Do not include userId. Use belongsToUser instead.",
-              },
-              notNull: {
-                type: "boolean",
-                description:
-                  "Whether the field is not null. If true, the field will be required.",
-              },
-              cascade: {
-                type: "boolean",
-                description:
-                  "Whether the field cascades. If true, the field will cascade.",
-              },
+              required: ["name", "type", "references", "notNull", "cascade"],
             },
-            required: ["name", "type"],
           },
         },
         required: ["table", "fields", "belongsToUser"],

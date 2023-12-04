@@ -1,6 +1,6 @@
 {
   "name": "@alephmatic/full-stack-ai",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Build a full stack Next.js app with an AI prompt.",
   "homepage": "https://github.com/alephmatic/full-stack-ai#readme",
   "license": "MIT",
@@ -22,7 +22,8 @@
   "scripts": {
     "watch": "tsup --watch",
     "start": "node dist/index.js",
-    "build": "tsup"
+    "build": "tsup",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "commander": "^11.1.0",
