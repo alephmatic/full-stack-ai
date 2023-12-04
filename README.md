@@ -1,6 +1,6 @@
 # Full stack AI
 
-Build a full stack Next.js app with an AI prompt.
+Build a full stack Next.js app from an AI prompt.
 
 Example:
 

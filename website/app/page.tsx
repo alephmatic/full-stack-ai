@@ -36,7 +36,7 @@ export default function Home() {
               <h1
                 className={`text-5xl tracking-wide text-white sm:text-6xl ${calFont.className}`}
               >
-                Build a full-stack app with an AI prompt
+                Build a full-stack app from an AI prompt
               </h1>
               <p className="mt-8 text-lg leading-8 text-gray-50">
                 Generate a full-stack Next.js app using our AI CLI.<br />
