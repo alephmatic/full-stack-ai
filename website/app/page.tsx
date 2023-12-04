@@ -39,9 +39,8 @@ export default function Home() {
                 Build a full-stack app with an AI prompt
               </h1>
               <p className="mt-8 text-lg leading-8 text-gray-50">
-                Our AI CLI will generate a full-stack Next.js app ready with
-                TypeScript, Tailwind, Prisma, Postgres, tRPC, Stripe, Resend.
-                The code is fully yours to do whatever you want with it.
+                Generate a full-stack Next.js app using our AI CLI.<br />
+                Your app will be built with TypeScript, Tailwind, Prisma, Postgres, tRPC, authentication, Stripe, and Resend.
               </p>
 
               <div className="mt-10">

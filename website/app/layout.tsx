@@ -6,7 +6,10 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Full Stack AI',
-  description: 'Build a full-stack app with an AI prompt',
+  description: 'Generate a full-stack Next.js app using our AI CLI.',
+  openGraph: {
+    url: 'https://fsai.elie.tech',
+  }
 }
 
 export default function RootLayout({
