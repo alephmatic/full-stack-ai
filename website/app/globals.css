@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.gradient-border {
+  position: relative;
+  @apply overflow-hidden rounded-lg; /* Apply rounded corners here */
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    @apply border-4 rounded-lg; /* Apply the same rounded corners here */
+    /* border-image: linear-gradient(to right, #4ade80, #22d3ee) 1; */
+    border-image: linear-gradient(to right, #6366F1, #A855F7, #EC4899) 1;
+  }
+}
+
+/* Ensure the content inside is clickable */
+.gradient-border > * {
+  position: relative;
+  z-index: 1;
+}
