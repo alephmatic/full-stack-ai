@@ -10,7 +10,7 @@ const calFont = localFont({
 
 export default function Home() {
   return (
-    <div className="bg-gray-900 h-screen sm:overflow-hidden">
+    <div className="bg-gray-900 min-h-screen sm:overflow-hidden">
       <div
         className={`text-white text-lg text-center pt-8 tracking-wider ${calFont.className}`}
       >
@@ -63,14 +63,22 @@ export default function Home() {
                   Star on GitHub
                 </a>
               </div>
+
+              <iframe
+                className="aspect-video h-full w-full rounded-lg mt-16"
+                src="https://www.youtube.com/embed/DptvWuRfF2M"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+
+              <div className="text-white text-center text-lg hover:scale-105 duration-300 mt-16">
+                <a href='https://x.com/elie2222'>
+                  Built by Elie
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div className="text-white text-center text-lg hover:scale-105 duration-300">
-          <a href='https://x.com/elie2222'>
-            Built by Elie
-          </a>
         </div>
 
         <div
