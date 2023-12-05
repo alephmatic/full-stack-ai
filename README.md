@@ -30,8 +30,10 @@ You can also enable the following by cloning the repo:
 * npm/yarn/bun instead of pnpm
 * Other databases instead of Postgres
 
-To enable these features today run the CLI locally, and update `actions.ts`.
+To enable these additional features today run the CLI locally, and update `actions.ts`.
 We'll release full support for these soon.
+
+We've also been experimenting with a more general AI coder called [Aleph0](https://github.com/alephmatic/aleph0) which is in beta.
 
 ## Getting Started
 
