@@ -1,6 +1,6 @@
 {
   "name": "fsai",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Build a full stack Next.js app from an AI prompt.",
   "homepage": "https://github.com/alephmatic/full-stack-ai#readme",
   "license": "MIT",

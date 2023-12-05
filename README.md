@@ -2,7 +2,11 @@
 
 Build a full stack Next.js app from an AI prompt.
 
-Example:
+## Demo Video
+
+[![Full Stack AI demo](/assets/video-thumbnail.png)](https://youtu.be/DptvWuRfF2M)
+
+## Getting Started
 
 ```bash
 export OPENAI_API_KEY=...
