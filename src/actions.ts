@@ -6,9 +6,9 @@ import { AuthProvider, MiscPackage, ResourceType, DBField } from "./types";
 
 let appName: string;
 
-async function createNextApp(appName_: string) {
-  appName = appName_.toLowerCase().replace(" ", "-");
-  consola.log("Creating Next.js app in", process.cwd());
+async function createNextApp(mixedCaseAppName: string) {
+  appName = mixedCaseAppName.toLowerCase().replace(" ", "-");
+  consola.log("Creating Next.js app", appName, "in", process.cwd());
 
   try {
     const { stdout, stderr } = await execa(
