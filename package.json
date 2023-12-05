@@ -1,6 +1,6 @@
 {
   "name": "fsai",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Build a full stack Next.js app from an AI prompt.",
   "homepage": "https://github.com/alephmatic/full-stack-ai#readme",
   "license": "MIT",
@@ -10,9 +10,7 @@
   },
   "type": "module",
   "main": "dist/index.js",
-  "bin": {
-    "fsai": "./dist/index.js"
-  },
+  "bin": "./dist/index.js",
   "files": [
     "dist"
   ],
