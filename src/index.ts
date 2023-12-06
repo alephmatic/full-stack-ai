@@ -2,8 +2,6 @@ import "dotenv/config";
 import { Command } from "commander";
 import { generateCode } from "./ai";
 
-if (!process.env.OPENAI_API_KEY) throw new Error("OPENAI_API_KEY not set");
-
 const program = new Command();
 
 program

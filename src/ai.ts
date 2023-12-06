@@ -4,6 +4,11 @@ import OpenAI from "openai";
 import { getActions } from "./actions";
 
 export async function generateCode(prompt: string) {
+  if (!process.env.OPENAI_API_KEY) {
+    consola.error("Please set OPENAI_API_KEY as an environment variable.");
+    return;
+  }
+
   consola.log("Generating code with AI...");
 
   const openai = new OpenAI();
