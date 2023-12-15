@@ -39,6 +39,20 @@ export const zodInit = z.object({
 export type InitOptions = z.infer<typeof zodInit>;
 export const initJsonSchema = zodToJsonSchema(zodInit);
 
+const zodDatabaseRowType = z.enum([
+  // Prisma types in comments
+  "varchar", // "String",
+  "text", // "String",
+  "number", // "Int",
+  "float", // "Float",
+  "boolean", // "Boolean",
+  "references", // "References",
+  "timestamp", // "DateTime",
+  "date", // "DateTime",
+  "string", // "String",
+]);
+type ZodDatabaseRowType = z.infer<typeof zodDatabaseRowType>;
+
 export const zodGenerate = z
   .object({
     // resourceTypes: z
@@ -70,22 +84,9 @@ export const zodGenerate = z
         z
           .object({
             name: z.string().describe("The name of the field."),
-            type: z
-              .enum([
-                // Prisma types in comments
-                "varchar", // "String",
-                "text", // "String",
-                "number", // "Int",
-                "float", // "Float",
-                "boolean", // "Boolean",
-                "references", // "References",
-                "timestamp", // "DateTime",
-                "date", // "DateTime",
-                "string", // "String",
-              ])
-              .describe(
-                "The type of the field. Choose a type appropriate to the selected database."
-              ),
+            type: zodDatabaseRowType.describe(
+              "The type of the field. Choose a type appropriate to the selected database."
+            ),
             references: z
               .string()
               .default("")
@@ -116,7 +117,7 @@ export const zodGenerate = z
             // In all other cases, use the type provided.
             const type =
               field.type === "references" && !references
-                ? "String"
+                ? "string"
                 : field.type;
 
             return {
@@ -151,7 +152,7 @@ export type GenerateOptions = z.infer<typeof zodGenerate>;
 export const generateJsonSchema = zodToJsonSchema(zodGenerate);
 
 // { [Drizzle]: Prisma }
-export const drizzlePrismaFieldMapping: { [drizzleType: string]: string } = {
+export const drizzlePrismaFieldMapping: Record<ZodDatabaseRowType, string> = {
   varchar: "String",
   text: "String",
   number: "Int",

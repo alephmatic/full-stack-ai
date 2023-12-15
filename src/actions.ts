@@ -103,8 +103,7 @@ async function kirimaseInit(options: InitOptions) {
 async function kirimaseGenerate(options: GenerateOptions) {
   const { table, belongsToUser, index } = options;
   const resourceTypes = ["model", "trpc_route", "views_and_components"];
-
-  console.log("!!!!🚀 ~ file: actions.ts:109 ~ kirimaseGenerate ~ orm:", orm)
+  
   const fields =
     orm === "drizzle"
       ? options.fields
