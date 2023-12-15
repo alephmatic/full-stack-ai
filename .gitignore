@@ -168,3 +168,5 @@ dist
 .yarn/install-state.gz
 .pnp.\*
 *.tsbuildinfo\
+
+.DS_Store

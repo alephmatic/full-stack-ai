@@ -16,24 +16,20 @@ The AI will:
 * Add shadcn/ui for frontend components
 * Generate pages to create/update/delete data
 * Generate a Prisma/Drizzle schema
+* Uses Postgres/MySQL/SQLite for the database
 * Add auth via NextAuth.js with GitHub/Discord/Google/Apple log in supported
+* Or add auth with Clerk/Lucia/Kinde
 * Add account screen to change settings
 * Add Stripe for payments
 * Add Resend to send transactional emails
 * Generate CRUD APIs
 * Add light/dark mode
 
-You can also enable the following by cloning the repo:
+It can use the package manager of your choice. It defaults to `pnpm` unless you prompt the AI otherwise.
 
-* Drizzle instead of Prisma
-* Clerk/Lucia auth instead of NextAuth.js
-* npm/yarn/bun instead of pnpm
-* Other databases instead of Postgres
+### Experimentation
 
-To enable these additional features today run the CLI locally, and update `actions.ts`.
-We'll release full support for these soon.
-
-We've also been experimenting with a more general AI coder called [Aleph0](https://github.com/alephmatic/aleph0) which is in beta.
+We've been experimenting with a more general AI coder called [Aleph0](https://github.com/alephmatic/aleph0) which is in beta.
 
 ## Getting Started
 
