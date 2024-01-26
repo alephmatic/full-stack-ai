@@ -77,6 +77,11 @@ export default function Home() {
                   Built by Elie
                 </a>
               </div>
+              <div className="text-white text-center text-lg hover:scale-105 duration-300 mt-8">
+                <a href='https://www.getinboxzero.com'>
+                  I{"'"}m also working on <strong>Inbox Zero</strong>, an open source email app to automate your emails and reach inbox zero fast.
+                </a>
+              </div>
             </div>
           </div>
         </div>

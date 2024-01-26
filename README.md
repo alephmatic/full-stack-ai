@@ -2,6 +2,8 @@
 
 Build a full stack Next.js app from an AI prompt.
 
+Built by [Elie](https://twitter.com/elie2222). Also check out [Inbox Zero](https://getinboxzero.com), an open source email app to automate your emails and reach inbox zero fast.
+
 ## Demo Video
 
 [![Full Stack AI demo](/assets/video-thumbnail.png)](https://youtu.be/DptvWuRfF2M)
